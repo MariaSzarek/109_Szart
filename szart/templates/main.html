@@ -1,0 +1,66 @@
+{% load static %}
+{% load bootstrap5 %}
+{{ '<' }}{{ '!DOCTYPE html>' }}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ysabeau:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'my_style.css' %}">
+    <script src="https://kit.fontawesome.com/3e24ce0777.js" crossorigin="anonymous"></script>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-example">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary py-4 sticky-top" id="navbar-example">
+        <div class="container">
+          <a class="navbar-brand logo" href="{% url 'szart' %}"><i class="fas fa-palette my-color"></i></i>S<span class="my-color">z</span></span>ART</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon p-4"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+              <a class="nav-link ms-auto px-lg-3" href="{% url 'szart' %}">Home</a>
+              <a class="nav-link ms-auto px-lg-3" href="{% url 'malarstwo' %}">Malarstwo</a>
+              <a class="nav-link ms-auto px-lg-3" href="{% url 'ceramika' %}">Ceramika</a>
+              <a class="nav-link ms-auto px-lg-3" href="{% url 'kontakt' %}">Kontakt</a>
+              {% if user.is_authenticated %}
+                <a class="nav-link ms-auto px-lg-3" href="{% url 'favorite' %}">Ulubione</a>
+                <a class="nav-link ms-auto px-lg-3" href="{% url 'cart' %}">Koszyk</a>
+                <a class="nav-link ms-auto px-lg-3" href="{% url 'logout' %}">Wyloguj: {{ user.username }}</a>
+              {% else %}
+                <a class="nav-link ms-auto px-lg-3" href="{% url 'login' %}">Zaloguj</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+    </nav>
+
+
+    {% block strona %} {% endblock %}
+
+    <footer class="bg-dark text-light">
+      <p class="py-5 mb-0 text-center">&copy; 2023 Copyright SzART</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+      const nav =document.querySelector('.navbar-collapse')
+
+      document.addEventListener('click', () => {
+        if (nav.classList.contains('show')) {
+          nav.classList.remove('show')
+        }
+      })
+    </script>
+
+
+  </body>
+</html>

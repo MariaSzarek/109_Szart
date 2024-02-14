@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+
+{% block title %}Szart{% endblock %}
+
+{% block strona %}
+    <main>
+      <section class="top-hero contact-hero">
+        <p class="top-hero-text text-light">Kontakt<p>
+          <div class="hero-shadow"></div>
+      </section>
+      <section class="contact py-5">
+        <div class="container">
+          {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-success">{{ message }}</div>
+              {% endfor %}
+          {% endif %}
+
+          <div class="row">
+            <div class="col-md-5 col-lg-4">
+              <div class="border p-5 mb-4 text-center">
+                <h2>dane kontaktowe</h2>
+                <br>
+                <p class="mt-5 fw-bold text-uppercase">adres</p>
+                <p>ul. Jakakolwiek 1</p>
+                <p> 00-000 Wrocław</p>
+                <br>
+                <p class="mt-5 fw-bold text-uppercase">telefon</p>
+                <p>+48 000-000-000</p>
+                <br>
+                <p class="mt-5 fw-bold text-uppercase">e-mail</p>
+                <p>jakikolwiek@gmail.com</p>
+                <div class="logo contact-logo mt-5 pt-4 mb-n3 border-top">
+                  <i class="fas fa-palette my-color"></i></i>S<span class="my-color">z</span></span>ART</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-7 col-lg-8">
+              <div class="border p-5">
+                <h2 class="text-center">formularz kontaktowy</h2>
+                  <form method="POST" class="mt-5">
+                    {% csrf_token %}
+                      <div class="mb-4">
+                        <div class="row">
+                          <div class="col-6 text-end text-uppercase">
+                            <label>Imię i nazwisko</label>
+                          </div>
+                          <div class="col-6">
+                            {{ form.nadawca }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <div class="row">
+                          <div class="col text-end text-uppercase">
+                            <label>Adres email</label>
+                          </div>
+                          <div class="col">
+                            {{ form.email }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <div class="row">
+                          <div class="col text-end text-uppercase">
+                            <label>Temat</label>
+                          </div>
+                          <div class="col">
+                            {{ form.temat }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col text-center text-uppercase mb-4">
+                        <label class="mb-3">Treść wiadomości</label>
+                        <div class="col">
+                          {{ form.tresc }}
+                        </div>
+                      </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                      <button type="submit" class="btn btn-primary">Wyślij</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-map pb-5">
+        <div class="container d-flex flex-column align-items-center">
+          <p class="display-4 py-4">Mapa dojazdu</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79261.51911883338!2d15.063066973650193!3d51.62462931245922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470898b9feaeb981%3A0x65da64d2d4236fdc!2s68-200%20%C5%BBary!5e0!3m2!1spl!2spl!4v1683996349463!5m2!1spl!2spl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+    </main>
+
+
+
+{% endblock %}

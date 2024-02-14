@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block title %}Koszyk{% endblock %}
+
+{% block strona %}
+
+
+
+   <main>
+      <section class="py-5 cart mt-5 mb-5">
+        <div class="container table-responsive">
+            {% if cart_items %}
+            <table class="table align-middle">
+                {% for item in cart_items %}
+                    <tbody>
+                      <tr>
+                        <td><img src="/my_media/{{ item.image }}" alt="{{ item.image }}"></td>
+                        <td>{{ item.title }}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                          <form action="{% url 'del_from_cart' item.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-dark px-4 bi bi-cart2"> usuń z koszyka</button>
+                          </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                {% endfor %}
+                <tfoot class="table-group-divider">
+                    <tr>
+                    <td>Podsumowanie:</td>
+                    <td></td>
+                    <td>{{ total_price }}</td>
+                    <td>
+                      <form action="{% url 'zamowienie' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-dark px-4">Zamawiam i płacę</button>
+                      </form>
+                    </td>
+                  </tr>
+                </tfoot>
+            </table>
+            {% else %}
+            <p>Koszyk jest pusty.</p>
+            {% endif %}
+        </div>
+      </section>
+    </main>
+
+
+{% endblock %}
+

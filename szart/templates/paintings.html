@@ -1,0 +1,119 @@
+{% extends 'main.html' %}
+
+{% block title %}Malarstwo{% endblock %}
+
+{% block strona %}
+
+
+   <main>
+      <section class="top-hero projects-hero">
+        <p class="top-hero-text text-light">Malarstwo<p>
+          <div class="hero-shadow"></div>
+      </section>
+        {% if added_item_to_cart %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <p>Dodano {{ added_item_to_cart.title }} do koszyka. Przejdź do
+                    <a href="{% url 'cart' %}" class="alert-link">koszyka</a>
+                </p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p>{{ message }} Przejdź do
+                        <a href="{% url 'cart' %}" class="alert-link">koszyka</a>
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+      <section class="py-5 projects mt-5 mb-5">
+        <div class="container">
+          <div class="row">
+            {% for item in items %}
+              {% if item.sold == 0 %}
+                  <div class="col-md-4 col-lg-3">
+                    <div class="card mb-3">
+                        <a href="{% url 'item' item.id %}">
+                            <img src="/my_media/{{ item.image }}" alt="{{ item.image }}" >
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'item' item.id %}" class="title-link">
+                                <h3 class="p-3 my-color ">{{ item.title }}</h3></a>
+                            <h4 class="p-3">{{ item.price }} PLN</h4>
+                            <p class="p-3">
+                            {{ item.short_desc }}
+                            </p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <form action="{% url 'add_to_fav' item.id %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if user.is_authenticated %}
+                                        {% if item in liked_products %}
+                                            <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart-fill" name="action" value="remove"> Ulubione</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                                        {% endif %}
+                                    {% else %}
+                                        <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                                    {% endif %}
+                                </form>
+                                <form action="{% url 'add_to_cart' item.id %}" method="POST">
+                                  {% csrf_token %}
+                                  <button id="submitBtn" type="submit" class="btn btn-outline-dark px-4 bi bi-cart2"> Koszyk</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              {% endif %}
+            {% endfor %}
+
+            {% for item in items %}
+              {% if item.sold == 1 %}
+                  <div class="col-md-4 col-lg-3">
+                    <div class="card mb-3">
+                        <a href="{% url 'item' item.id %}">
+                            <img src="/my_media/{{ item.image }}" alt="{{ item.image }}" class="img-grayscale">
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'item' item.id %}" class="title-link">
+                                <h3 class="p-3 my-color ">{{ item.title }}</h3></a>
+                            <h4 class="p-3">{{ item.price }} PLN</h4>
+                            <p class="p-3">
+                            {{ item.short_desc }}
+                            </p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <form action="{% url 'add_to_fav' item.id %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if user.is_authenticated %}
+                                        {% if item in liked_products %}
+                                            <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart-fill" name="action" value="remove"> Ulubione</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                                        {% endif %}
+                                    {% else %}
+                                        <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                                    {% endif %}
+                                </form>
+                                <a href="{% url 'kontakt' %}">
+                                    <button id="submitBtn" type="submit" class="btn btn-outline-dark px-4"> Zapytaj o podobne</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+      </section>
+   </main>
+
+
+{% endblock %}
+

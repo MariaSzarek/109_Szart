@@ -1,0 +1,200 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.6rem;
+}
+
+.hero-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index:-1;
+}
+
+.top-hero {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    z-index: 0;
+}
+
+.top-hero-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 3.6rem;
+    text-transform: uppercase;
+}
+
+.my-color {
+    color: rgb(188, 4, 4);
+}
+
+.img-grayscale {
+    filter: grayscale(100%);
+}
+
+/* nawigacja navbar */
+
+.navbar-brand {
+    font-size: 3rem;
+}
+
+.navbar-nav {
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.logo{
+    font-size: 4rem;
+    font-family: 'Ysabeau', sans-serif;
+}
+
+.navbar-toggler {
+    font-size: 1rem;
+}
+
+/*header*/
+header {
+    font-size: 2rem;
+}
+
+.carousel-item {
+    position: relative;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+
+}
+
+.carousel-img-one {
+    background-image: url('../my_media/images/car_1.jpg');
+}
+
+.carousel-img-two {
+    background-image: url('../my_media/images/car_2.jpg');
+}
+
+.carousel-img-three {
+    background-image: url('../my_media/images/car_3.jpg');
+}
+
+@media (min-width: 1400px) {
+    .carousel-item {
+        height: 200px;
+    }
+}
+
+
+
+/* footer */
+
+footer {
+    font-size: 1.6rem;
+}
+
+
+/* cart */
+.cart img {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+}
+
+.cart .btn {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+/* items */
+
+.items h3{
+    font-weight: bold;
+    font-family: 'Ysabeau', sans-serif;
+    font-size: 2.5rem;
+}
+
+.items .btn {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+/* projects */
+
+
+.projects h3 {
+    font-weight: bold;
+    font-family: 'Ysabeau', sans-serif;
+    font-size: 2.5rem;
+}
+
+.projects img {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.projects .btn {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+.projects .title-link {
+  font-weight: 700;
+  text-decoration: none; /* usuwa podkreślenie */
+}
+
+
+/* ceramics */
+.ceramics-hero {
+    background-image: url("../my_media/images/zegar.jpg");
+    background-position: center;
+}
+
+/*contact*/
+
+.contact-hero{
+    background-image: url("../my_media/images/abstrakt_2.jpg");
+    background-position: 0 40%;
+}
+
+.contact input, .contact select, .contact textarea {
+    font-size: 1.6rem;
+}
+
+.contact .btn {
+    padding: 0.3em 0.8em;
+    font-size: 2rem;
+    background-color: rgb(188, 4, 4);
+    border-color:rgb(188, 4, 4);
+}
+
+.contact h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.6rem;
+}
+
+.contact-map iframe {
+    width: 100%;
+    min-height: 400px;
+
+}
+
+

@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block title %}Ulubione{% endblock %}
+
+{% block strona %}
+
+
+   <main>
+      <section class="py-5 cart mt-5 mb-5">
+        <div class="container table-responsive">
+            {% if ulubione_produkty %}
+            <table class="table align-middle">
+                {% for item in ulubione_produkty %}
+                    <tbody>
+                      <tr>
+                        <td><img src="/my_media/{{ item.image }}" alt="{{ item.image }}"></td>
+                        <td>{{ item.title }}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <form action="{% url 'add_to_cart' item.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark px-4 bi bi-cart2"> dodaj do koszyka</button>
+                            </form>
+                            <form action="{% url 'add_to_fav' item.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark px-4 mt-2"> usuń z ulubionych</button>
+                            </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p>Nie masz ulubionych produktów.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-2"></div> <!-- Prawy margines 1/6 szerokości ekranu -->
+        </div>
+      </section>
+    </main>
+
+
+{% endblock %}
+

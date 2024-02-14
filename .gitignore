@@ -1,0 +1,13 @@
+# Database
+szart/db.sqlite3
+
+# Python
+*.pyc
+*~
+__pycache__
+
+# images
+/images
+
+
+.idea/

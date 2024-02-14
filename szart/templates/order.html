@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block title %}Szart{% endblock %}
+
+{% block strona %}
+  <header>
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+      </div>
+  </header>
+
+
+    <main>
+        <section class="py-5 cart mt-5 mb-5">
+          <h3 class="m-5 mt-0 items my-color">Dziękujemy za złożenie zamówienia.</h3>
+          <div class="container table-responsive">
+
+
+            <table class="table align-middle">
+                {% for item in ordered_products %}
+                    <tbody>
+                      <tr>
+                        <td><img src="/my_media/{{ item.image }}" alt="{{ item.image }}"></td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.price }}</td>
+                      </tr>
+                    </tbody>
+                {% endfor %}
+                <tfoot class="table-group-divider">
+                    <tr>
+                    <td>Podsumowanie:</td>
+                    <td></td>
+                    <td>{{ total_price }}</td>
+                  </tr>
+                </tfoot>
+            </table>
+          </div>
+        </section>
+    </main>
+{% endblock %}
