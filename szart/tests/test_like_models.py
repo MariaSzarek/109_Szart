@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from szartapp.models import Product, Like
+from django.db import models
 
 class LikeModelTest(TestCase):
     @classmethod
@@ -14,6 +15,13 @@ class LikeModelTest(TestCase):
             like=0,
             product= test_product,
             user=test_user)
+
+    def test_like_instance(self):
+        like = Like.objects.get(id=1)
+        self.assertEqual(like.like, 0)
+        self.assertEqual(like.product, Product.objects.get(id=1))
+        self.assertEqual(like.user, User.objects.get(id=1))
+
 
     def test_like_label(self):
         like = Like.objects.get(id=1)
@@ -74,6 +82,11 @@ class LikeModelTest(TestCase):
         blank = like._meta.get_field('user').blank
         self.assertTrue(blank)
 
+    def test_object_fields(self):
+        like = Like.objects.get(id=1)
+        self.assertIsInstance(like._meta.get_field("like"), models.PositiveSmallIntegerField)
+        self.assertIsInstance(like._meta.get_field("product"), models.ForeignKey)
+        self.assertIsInstance(like._meta.get_field("user"), models.ForeignKey)
 
     def test_object_name(self):
         like = Like.objects.get(id=1)
