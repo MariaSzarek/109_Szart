@@ -30,13 +30,18 @@ class LikeModelTest(TestCase):
         field_label = like._meta.get_field('product').verbose_name
         self.assertEqual(field_label, 'product')
 
-    #def test_product_foreignkey(self):
+    def test_product_foreignkey(self):
+        like = Like.objects.get(id=1)
+        self.assertIsInstance(like.product, Product)
 
-    # def test_product_ondelete(self):
-    #     like = Like.objects.get(id=1)
-    #     test_product = Product.objects.get(id=1)
-    #     test_product.delete()
-    #     self.assertIsNone(like.product)
+    def test_product_ondelete(self):
+        like = Like.objects.get(id=1)
+        test_product = like.product
+        self.assertTrue(Like.objects.filter(pk=like.pk).exists())
+        self.assertTrue(Product.objects.filter(pk=test_product.pk).exists())
+        test_product.delete()
+        self.assertFalse(Like.objects.filter(pk=like.pk).exists())
+        self.assertFalse(Product.objects.filter(pk=test_product.pk).exists())
 
     # def test_product_ondelete(self):
     #     like = Like.objects.get(id=1)
@@ -52,6 +57,10 @@ class LikeModelTest(TestCase):
         like = Like.objects.get(id=1)
         field_label = like._meta.get_field('user').verbose_name
         self.assertEqual(field_label, 'user')
+
+    def test_user_foreignkey(self):
+        like = Like.objects.get(id=1)
+        self.assertIsInstance(like.user, User)
 
     #def test_user_ondelete(self):
 
