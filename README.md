@@ -32,7 +32,7 @@ To run this application locally, follow these steps:
 2. Navigate to the project directory:
 
    ```bash
-   cd 109_Szart
+   cd 109_Szart\szart
    ```
 
 3. Create a virtual environment:
