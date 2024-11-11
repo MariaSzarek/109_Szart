@@ -1,5 +1,7 @@
 from django.urls import path
 from szartapp.views import index, item_response, show_paintings, show_ceramics, contact_response, add_to_fav, cart, add_to_cart, favorite_response, del_from_cart, place_order
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('szart/', index, name='szart'),
@@ -14,4 +16,4 @@ urlpatterns = [
     path('ulubione/', favorite_response, name='favorite'),
     path('koszyk/', cart, name='cart'),
     path('zamowienie/', place_order, name='zamowienie')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
