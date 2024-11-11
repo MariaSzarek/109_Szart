@@ -3,6 +3,8 @@
 Szart is a unique Web Store App showing my paintings and ceramics.
 This my own first Django application created to practice and learn new framework. 
 
+![img.png](img.png)
+
 #### Features
 Browse and Explore: Users can navigate through the available products in the store, featuring a diverse collection of paintings and ceramics.
 
